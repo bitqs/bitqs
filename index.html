@@ -1,1 +1,463 @@
-Hello World
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QS的AI作品</title>
+  <meta name="description" content="QS 用 AI 打造的项目作品集" />
+  <style>
+    :root {
+      --bg: #06070d;
+      --bg-soft: #0d1020;
+      --card: rgba(255, 255, 255, 0.03);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #e7e9f3;
+      --muted: #8b90ad;
+      --accent: #7c5cff;
+      --accent-2: #19e3ff;
+      --accent-3: #ff4ecd;
+      --glow: rgba(124, 92, 255, 0.45);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+        "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Animated aurora background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      background:
+        radial-gradient(40% 50% at 15% 20%, rgba(124, 92, 255, 0.25), transparent 70%),
+        radial-gradient(45% 45% at 85% 15%, rgba(25, 227, 255, 0.18), transparent 70%),
+        radial-gradient(50% 50% at 75% 85%, rgba(255, 78, 205, 0.16), transparent 70%);
+      filter: blur(10px);
+      animation: drift 18s ease-in-out infinite alternate;
+    }
+
+    /* Subtle grid overlay */
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(circle at 50% 0%, #000 0%, transparent 80%);
+    }
+
+    @keyframes drift {
+      0%   { transform: translate3d(0, 0, 0) scale(1); }
+      100% { transform: translate3d(0, -30px, 0) scale(1.08); }
+    }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* Nav */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(12px);
+      background: rgba(6, 7, 13, 0.6);
+      border-bottom: 1px solid var(--card-border);
+    }
+    nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+    .brand {
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 12px var(--accent-2);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 28px;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+    nav a:hover { color: var(--text); }
+    .nav-links { display: flex; }
+
+    /* Hero */
+    header { padding: 110px 0 80px; text-align: center; }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--card-border);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--muted);
+      background: var(--card);
+      margin-bottom: 28px;
+    }
+    .badge .pulse {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 0 0 rgba(25, 227, 255, 0.7);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(25, 227, 255, 0.6); }
+      70%  { box-shadow: 0 0 0 8px rgba(25, 227, 255, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(25, 227, 255, 0); }
+    }
+    h1 {
+      font-size: clamp(40px, 7vw, 76px);
+      line-height: 1.05;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(120deg, #fff 20%, var(--accent-2) 55%, var(--accent) 90%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .subtitle {
+      margin: 22px auto 0;
+      max-width: 620px;
+      color: var(--muted);
+      font-size: clamp(16px, 2.2vw, 19px);
+    }
+    .cta {
+      margin-top: 38px;
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      padding: 13px 26px;
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn-primary {
+      color: #0b0c12;
+      background: linear-gradient(120deg, var(--accent-2), var(--accent));
+      box-shadow: 0 10px 30px -8px var(--glow);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -8px var(--glow); }
+    .btn-ghost {
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      background: var(--card);
+    }
+    .btn-ghost:hover { transform: translateY(-2px); border-color: var(--accent); }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 64px;
+    }
+    .stat {
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+    }
+    .stat .num {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(120deg, var(--accent-2), var(--accent-3));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat .label { color: var(--muted); font-size: 13px; margin-top: 4px; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    .section-head { margin-bottom: 44px; }
+    .section-head .eyebrow {
+      color: var(--accent-2);
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+    .section-head h2 {
+      font-size: clamp(28px, 4vw, 40px);
+      font-weight: 800;
+      margin-top: 10px;
+      letter-spacing: -0.5px;
+    }
+    .section-head p { color: var(--muted); margin-top: 10px; max-width: 560px; }
+
+    /* Project grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 22px;
+    }
+    .card {
+      position: relative;
+      border: 1px solid var(--card-border);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
+      border-radius: 18px;
+      padding: 26px;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(120% 80% at 0% 0%, var(--card-tint, var(--accent)), transparent 55%);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .card:hover { transform: translateY(-6px); border-color: var(--card-tint, var(--accent)); }
+    .card .icon {
+      width: 50px; height: 50px;
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      font-size: 24px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      margin-bottom: 18px;
+    }
+    .card h3 { font-size: 20px; font-weight: 700; }
+    .card .desc { color: var(--muted); font-size: 14.5px; margin-top: 10px; min-height: 66px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 18px; }
+    .tag {
+      font-size: 12px;
+      color: var(--muted);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,0.02);
+    }
+    .card a.link {
+      color: var(--accent-2);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .card a.link:hover { gap: 10px; }
+
+    /* About */
+    .about {
+      border: 1px solid var(--card-border);
+      background: var(--card);
+      border-radius: 22px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: 20px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-3));
+      display: grid;
+      place-items: center;
+      font-size: 64px;
+      font-weight: 800;
+      color: #fff;
+      box-shadow: 0 20px 50px -15px var(--glow);
+    }
+    .about h2 { font-size: 30px; font-weight: 800; }
+    .about p { color: var(--muted); margin-top: 14px; }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--card-border);
+      padding: 40px 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    footer .socials { margin-bottom: 14px; display: flex; gap: 18px; justify-content: center; }
+    footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--accent-2); }
+
+    /* Reveal animation */
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.show { opacity: 1; transform: none; }
+
+    @media (max-width: 720px) {
+      .nav-links { display: none; }
+      .stats { grid-template-columns: 1fr; }
+      .about { grid-template-columns: 1fr; text-align: center; padding: 30px; }
+      .avatar { max-width: 160px; margin: 0 auto; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span> QS的AI作品</div>
+      <div class="nav-links">
+        <a href="#projects">项目</a>
+        <a href="#about">关于</a>
+        <a href="#contact">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <header>
+    <div class="wrap">
+      <span class="badge"><span class="pulse"></span> 由 AI 驱动 · 持续更新中</span>
+      <h1>用 AI 把想法<br />变成真正的产品</h1>
+      <p class="subtitle">
+        这里收录了 QS 借助 AI 工具从 0 到 1 打造的项目 —— 从创意、设计到代码,
+        每一个都是人与 AI 协作的成果。
+      </p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#projects">浏览项目 →</a>
+        <a class="btn btn-ghost" href="#about">了解我</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat reveal"><div class="num">6+</div><div class="label">AI 项目</div></div>
+        <div class="stat reveal"><div class="num">100%</div><div class="label">AI 协作完成</div></div>
+        <div class="stat reveal"><div class="num">∞</div><div class="label">还在路上的点子</div></div>
+      </div>
+    </div>
+  </header>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <div class="eyebrow">Projects</div>
+        <h2>我的 AI 作品集</h2>
+        <p>以下为示例占位卡片,替换成你真实的项目即可(改文字、链接和标签就行)。</p>
+      </div>
+
+      <div class="grid">
+        <!-- 项目卡片:复制一份即可新增。改 --card-tint 换主题色 -->
+        <article class="card reveal" style="--card-tint: var(--accent)">
+          <div class="icon">🤖</div>
+          <h3>智能聊天助手</h3>
+          <p class="desc">基于大语言模型打造的对话机器人,支持多轮上下文记忆与知识库问答。</p>
+          <div class="tags"><span class="tag">LLM</span><span class="tag">RAG</span><span class="tag">Web</span></div>
+          <a class="link" href="#">查看详情 →</a>
+        </article>
+
+        <article class="card reveal" style="--card-tint: var(--accent-2)">
+          <div class="icon">🎨</div>
+          <h3>AI 绘图工具</h3>
+          <p class="desc">输入一句话即可生成插画与海报,内置多种风格模板,一键导出高清图。</p>
+          <div class="tags"><span class="tag">图像生成</span><span class="tag">Diffusion</span></div>
+          <a class="link" href="#">查看详情 →</a>
+        </article>
+
+        <article class="card reveal" style="--card-tint: var(--accent-3)">
+          <div class="icon">📝</div>
+          <h3>智能写作平台</h3>
+          <p class="desc">帮你润色、扩写、改写文章,自动生成大纲与摘要,提升内容创作效率。</p>
+          <div class="tags"><span class="tag">NLP</span><span class="tag">内容创作</span></div>
+          <a class="link" href="#">查看详情 →</a>
+        </article>
+
+        <article class="card reveal" style="--card-tint: var(--accent-2)">
+          <div class="icon">🎧</div>
+          <h3>语音转写小程序</h3>
+          <p class="desc">把会议录音、播客自动转成文字稿,支持说话人区分与重点提取。</p>
+          <div class="tags"><span class="tag">语音识别</span><span class="tag">小程序</span></div>
+          <a class="link" href="#">查看详情 →</a>
+        </article>
+
+        <article class="card reveal" style="--card-tint: var(--accent)">
+          <div class="icon">📊</div>
+          <h3>数据分析看板</h3>
+          <p class="desc">用自然语言提问就能生成图表,让不懂代码的人也能做数据分析。</p>
+          <div class="tags"><span class="tag">数据可视化</span><span class="tag">Agent</span></div>
+          <a class="link" href="#">查看详情 →</a>
+        </article>
+
+        <article class="card reveal" style="--card-tint: var(--accent-3)">
+          <div class="icon">🚀</div>
+          <h3>你的下一个项目</h3>
+          <p class="desc">这里留给你最新的点子 —— 把这张卡片复制一份,填上你的真实项目吧。</p>
+          <div class="tags"><span class="tag">即将上线</span></div>
+          <a class="link" href="#">敬请期待 →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="about reveal">
+        <div class="avatar">QS</div>
+        <div>
+          <h2>关于我</h2>
+          <p>
+            我是 QS,一个相信「AI 是创造力放大器」的实践者。我喜欢把脑海里的想法,
+            通过 AI 工具快速落地成可用的产品。无论是写代码、做设计还是处理数据,
+            AI 都是我并肩作战的伙伴。
+          </p>
+          <p>
+            这个站点会持续记录我用 AI 完成的每一个项目。欢迎和我交流,一起探索
+            AI 能创造的更多可能。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="wrap">
+      <div class="socials">
+        <a href="mailto:qs.qushuang@gmail.com">邮箱</a>
+        <a href="#">GitHub</a>
+        <a href="#">微博</a>
+      </div>
+      <div>© <span id="year"></span> QS的AI作品 · 由人与 AI 共同打造</div>
+    </div>
+  </footer>
+
+  <script>
+    // 年份
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // 滚动入场动画
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => { if (e.isIntersecting) e.target.classList.add("show"); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
