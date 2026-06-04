@@ -30,21 +30,29 @@
     header p { color: var(--muted); margin-top: 10px; font-size: 16px; }
 
     .list { display: flex; flex-direction: column; }
-    a.item {
-      display: block;
-      text-decoration: none;
-      color: inherit;
-      padding: 22px 0;
+    .item {
+      padding: 24px 0;
       border-top: 1px solid var(--line);
-      transition: padding-left 0.18s ease;
     }
-    a.item:last-child { border-bottom: 1px solid var(--line); }
-    a.item:hover { padding-left: 8px; }
+    .item:last-child { border-bottom: 1px solid var(--line); }
     .row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
     .name { font-size: 19px; font-weight: 600; }
-    a.item:hover .name { color: var(--accent); }
     .lang { font-size: 12px; color: var(--muted); white-space: nowrap; }
-    .desc { color: var(--muted); font-size: 14.5px; margin-top: 6px; }
+    .desc { color: var(--muted); font-size: 14.5px; margin-top: 8px; }
+
+    .links { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+    .links a {
+      font-size: 13px;
+      text-decoration: none;
+      color: var(--text);
+      padding: 5px 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      transition: border-color 0.18s ease, color 0.18s ease;
+    }
+    .links a:hover { border-color: var(--accent); color: var(--accent); }
+    .links a.primary { border-color: rgba(124, 92, 255, 0.5); color: var(--accent); }
+    .links a.primary:hover { background: rgba(124, 92, 255, 0.12); }
 
     footer {
       margin-top: 64px;
@@ -62,33 +70,44 @@
     </header>
 
     <div class="list">
-      <a class="item" href="https://github.com/bitqs/sharp">
-        <div class="row">
-          <span class="name">sharp</span>
-          <span class="lang">Skill</span>
-        </div>
-        <div class="desc">Claude Code 的 Sharp 模式技能 —— 乔布斯 × 马斯克式的判断力框架。</div>
-      </a>
-
-      <a class="item" href="https://github.com/bitqs/maia">
+      <article class="item">
         <div class="row">
           <span class="name">maia</span>
           <span class="lang">Python</span>
         </div>
-        <div class="desc">一个用 Python 写的项目。(可在此补上一句话简介)</div>
-      </a>
+        <div class="desc">把任意知识体系转成可交互的双语教学图谱，按逻辑顺序边看边学（已有道德经、金刚经等线上示例）。</div>
+        <div class="links">
+          <a class="primary" href="https://bitqs.github.io/maia/daodejing.html" target="_blank" rel="noopener">产品页 ↗</a>
+          <a href="https://github.com/bitqs/maia" target="_blank" rel="noopener">Git ↗</a>
+        </div>
+      </article>
 
-      <a class="item" href="https://github.com/bitqs/thegametheory">
+      <article class="item">
         <div class="row">
           <span class="name">thegametheory</span>
           <span class="lang">JavaScript</span>
         </div>
-        <div class="desc">一个用 JavaScript 写的项目。(可在此补上一句话简介)</div>
-      </a>
+        <div class="desc">一系列「探究游戏为何好玩」的极简小游戏，把玩法拆到最小的上瘾内核，再展示它的运作机制。</div>
+        <div class="links">
+          <a class="primary" href="https://thegametheory.pages.dev" target="_blank" rel="noopener">产品页 ↗</a>
+          <a href="https://github.com/bitqs/thegametheory" target="_blank" rel="noopener">Git ↗</a>
+        </div>
+      </article>
+
+      <article class="item">
+        <div class="row">
+          <span class="name">sharp</span>
+          <span class="lang">Claude Skill</span>
+        </div>
+        <div class="desc">Claude Code 的 Sharp 模式技能 —— 把乔布斯式产品直觉与马斯克式第一性原理，合成一套判断力框架。</div>
+        <div class="links">
+          <a href="https://github.com/bitqs/sharp" target="_blank" rel="noopener">Git ↗</a>
+        </div>
+      </article>
     </div>
 
     <footer>
-      更多见 <a href="https://github.com/bitqs">github.com/bitqs</a>
+      更多见 <a href="https://github.com/bitqs" target="_blank" rel="noopener">github.com/bitqs</a>
     </footer>
   </main>
 </body>
