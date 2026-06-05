@@ -1,114 +1,96 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>QS · AI 项目</title>
-  <style>
-    :root {
-      --bg: #0a0b10;
-      --text: #e8eaf2;
-      --muted: #8a8fa3;
-      --line: rgba(255, 255, 255, 0.1);
-      --accent: #7c5cff;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: -apple-system, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-    }
-    main {
-      max-width: 620px;
-      margin: 0 auto;
-      padding: 120px 24px 80px;
-    }
-    header { margin-bottom: 56px; }
-    h1 { font-size: 30px; font-weight: 700; letter-spacing: -0.5px; }
-    header p { color: var(--muted); margin-top: 10px; font-size: 16px; }
-
-    .list { display: flex; flex-direction: column; }
-    .item {
-      padding: 24px 0;
-      border-top: 1px solid var(--line);
-    }
-    .item:last-child { border-bottom: 1px solid var(--line); }
-    .row { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
-    .name { font-size: 19px; font-weight: 600; }
-    .lang { font-size: 12px; color: var(--muted); white-space: nowrap; }
-    .desc { color: var(--muted); font-size: 14.5px; margin-top: 8px; }
-
-    .links { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
-    .links a {
-      font-size: 13px;
-      text-decoration: none;
-      color: var(--text);
-      padding: 5px 12px;
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      transition: border-color 0.18s ease, color 0.18s ease;
-    }
-    .links a:hover { border-color: var(--accent); color: var(--accent); }
-    .links a.primary { border-color: rgba(124, 92, 255, 0.5); color: var(--accent); }
-    .links a.primary:hover { background: rgba(124, 92, 255, 0.12); }
-
-    footer {
-      margin-top: 64px;
-      color: var(--muted);
-      font-size: 13px;
-    }
-    footer a { color: var(--muted); }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QS · AI 作品集</title>
+  <meta name="description" content="QS — 独立开发者,AI × 游戏。最近的 AI 作品集。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="scanlines" aria-hidden="true"></div>
+
+  <button id="lang-toggle" aria-label="Switch language">EN</button>
+
+  <header class="hero">
+    <h1 class="hero-title">QS</h1>
+    <p class="hero-sub" data-i18n="tagline">独立开发者 · AI × 游戏</p>
+    <a class="hero-gh" href="https://github.com/bitqs" target="_blank" rel="noopener">github.com/bitqs</a>
+  </header>
+
   <main>
-    <header>
-      <h1>QS 的 AI 项目</h1>
-      <p>用 AI 做的一些公开项目。</p>
-    </header>
+    <h2 class="section-title" data-i18n="worksTitle">最近的 AI 作品</h2>
+    <div class="grid">
 
-    <div class="list">
-      <article class="item">
-        <div class="row">
-          <span class="name">maia</span>
-          <span class="lang">Python</span>
-        </div>
-        <div class="desc">把任意知识体系转成可交互的双语教学图谱，按逻辑顺序边看边学（已有道德经、金刚经等线上示例）。</div>
+      <article class="card">
+        <div class="card-icon">🃏</div>
+        <h3>The Game Theory</h3>
+        <p data-i18n="tgtDesc">一系列「探究游戏为何好玩」的极简元游戏,把玩法拆到最小的上瘾内核。№2「游戏的诞生」:浏览器可玩卡牌游戏,逐层拆解反馈、随机、稀有度、成长、juice,多结局。</p>
+        <div class="tags"><span>HTML/JS</span><span>890 件博物馆藏品数据</span></div>
         <div class="links">
-          <a class="primary" href="https://bitqs.github.io/maia/daodejing.html" target="_blank" rel="noopener">产品页 ↗</a>
-          <a href="https://github.com/bitqs/maia" target="_blank" rel="noopener">Git ↗</a>
+          <a href="https://thegametheory.pages.dev" target="_blank" rel="noopener" data-i18n="play">▶ 试玩</a>
+          <a href="https://github.com/bitqs/thegametheory" target="_blank" rel="noopener">repo</a>
         </div>
       </article>
 
-      <article class="item">
-        <div class="row">
-          <span class="name">thegametheory</span>
-          <span class="lang">JavaScript</span>
-        </div>
-        <div class="desc">一系列「探究游戏为何好玩」的极简小游戏，把玩法拆到最小的上瘾内核，再展示它的运作机制。</div>
+      <article class="card">
+        <div class="card-icon">🖼️</div>
+        <h3>Art Looting <span class="badge">PRIVATE</span></h3>
+        <p data-i18n="artDesc">美术馆潜入偷画 push-your-luck roguelite。接入 4 家真实博物馆开放 API(The Met、V&amp;A、芝加哥艺术学院、克利夫兰),风险/回报抉择,赌画作真伪,装备升级。</p>
+        <div class="tags"><span>HTML/JS</span><span>博物馆开放 API</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🧛</div>
+        <h3>My Survivor Game <span class="badge">PRIVATE</span></h3>
+        <p data-i18n="survDesc">Godot 4 类幸存者游戏,「人生即游戏」主题:寿命=时间,敌人=生活压力,升级=人生选择,11 种祝福/诅咒。</p>
+        <div class="tags"><span>Godot 4</span><span>GDScript</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">⚔️</div>
+        <h3>2D Three Kingdom <span class="badge">PRIVATE</span></h3>
+        <p data-i18n="threeDesc">Godot 4 三国主题割草动作游戏。组件化架构:伤害管线、信号总线、能力系统、局外成长。</p>
+        <div class="tags"><span>Godot 4</span><span>GDScript</span></div>
+      </article>
+
+      <article class="card">
+        <div class="card-icon">🔪</div>
+        <h3>Sharp</h3>
+        <p data-i18n="sharpDesc">Claude Code 技能:把乔布斯式产品直觉与马斯克式第一性原理,合成一套判断力框架,零废话输出。</p>
+        <div class="tags"><span>Claude Code skill</span></div>
         <div class="links">
-          <a class="primary" href="https://thegametheory.pages.dev" target="_blank" rel="noopener">产品页 ↗</a>
-          <a href="https://github.com/bitqs/thegametheory" target="_blank" rel="noopener">Git ↗</a>
+          <a href="https://github.com/bitqs/sharp" target="_blank" rel="noopener">repo</a>
         </div>
       </article>
 
-      <article class="item">
-        <div class="row">
-          <span class="name">sharp</span>
-          <span class="lang">Claude Skill</span>
-        </div>
-        <div class="desc">Claude Code 的 Sharp 模式技能 —— 把乔布斯式产品直觉与马斯克式第一性原理，合成一套判断力框架。</div>
+      <article class="card">
+        <div class="card-icon">🧠</div>
+        <h3>Maia</h3>
+        <p data-i18n="maiaDesc">把任意知识体系转成可交互的双语教学图谱,按逻辑顺序边看边学——已有道德经、金刚经等线上示例。</p>
+        <div class="tags"><span>Python</span><span>知识图谱</span></div>
         <div class="links">
-          <a href="https://github.com/bitqs/sharp" target="_blank" rel="noopener">Git ↗</a>
+          <a href="https://bitqs.github.io/maia/daodejing.html" target="_blank" rel="noopener" data-i18n="demo">▶ 示例</a>
+          <a href="https://github.com/bitqs/maia" target="_blank" rel="noopener">repo</a>
         </div>
       </article>
+
     </div>
-
-    <footer>
-      更多见 <a href="https://github.com/bitqs" target="_blank" rel="noopener">github.com/bitqs</a>
-    </footer>
   </main>
+
+  <footer>
+    <a href="https://github.com/bitqs" target="_blank" rel="noopener">GitHub</a>
+    <span class="sep">·</span>
+    <a href="https://x.com/bit_qs" target="_blank" rel="noopener">X @bit_qs</a>
+    <span class="sep">·</span>
+    <span data-i18n="wechat">公众号:爱通缩</span>
+    <span class="sep">·</span>
+    <a href="mailto:qs.qushuang@gmail.com">qs.qushuang@gmail.com</a>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
 </html>
