@@ -27,7 +27,8 @@
 |---|---|---|
 | **三国幸存者** | 三国割草 survivor,八名将一骑当千 | [▶ 玩](https://sanguo-survivor.pages.dev) |
 | **The Game Theory · 游戏论** | 边玩边拆穿自己的元游戏:一个过分诚实的设计师当面坦白每个上瘾机制 | [▶ 玩](https://thegametheory.pages.dev) |
-| **Juice Lab · 打击感实验室** | 从"死鱼"到"上头",11 步逐层开关打击感技术,A/B 对比 | [▶ 玩](https://juice-lab.shuangqu.workers.dev) |
+| **Juice Lab · 打击感实验室** | 从"死鱼"到"上头",19 步逐层开关打击感技术,A/B 对比 | [▶ 玩](https://juice-lab.shuangqu.workers.dev) |
+| **mini-dmc · 迷你鬼泣** | 复刻鬼泣核心战斗:连击/挑空/空中连/D-SSS 评分,零依赖 | [▶ 玩](https://mini-dmc.shuangqu.workers.dev) |
 
 ## 🛠️ AI × 游戏开发(框架 / 工具)
 
