@@ -3,6 +3,8 @@
 独立开发者 · **游戏 × AI** · 边做边玩边拆解。
 痴迷"最小的逻辑,如何产生游戏感"——也痴迷用 AI 把这件事做快、做爽。
 
+**🏠 主页:<https://bitqs.github.io>**
+
 ---
 
 ## 🎮 三国幸存者 · Three Kingdoms Survivors
