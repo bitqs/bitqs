@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>技术选型 × 人机配合 · bitqs 研究</title>
+<meta name="description" content="计划阶段如何按人群/需求/项目选开发语言，以及人与 AI 如何分工配合 —— 一份多语言深度研究（中英日韩德法西葡俄）。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0b14; --bg-card:#12121f; --bg-soft:#171727;
+  --ink:#e8e6df; --dim:#8a8798;
+  --gold:#ffc83d; --red:#ff4757; --cyan:#3de8ff; --green:#4ade80;
+  --border:#2a2a3e;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:'Noto Sans SC',sans-serif; line-height:1.75;
+  overflow-x:hidden;
+}
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent 0 2px,rgba(0,0,0,.16) 2px 4px);pointer-events:none;z-index:9000;}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 58%,rgba(0,0,0,.5) 100%);pointer-events:none;z-index:9001;}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px;}
+a{color:var(--cyan);text-decoration:none;}
+a:hover{color:var(--gold);}
+
+/* hero */
+header{padding:72px 0 30px;}
+.kicker{font-family:'Press Start 2P',monospace;font-size:.62rem;color:var(--cyan);letter-spacing:1px;}
+.logo{
+  font-family:'Press Start 2P',monospace;
+  font-size:clamp(1.4rem,4.6vw,2.5rem); color:var(--gold);
+  text-shadow:4px 4px 0 var(--red),8px 8px 0 rgba(255,71,87,.22);
+  line-height:1.5; margin:20px 0 6px; letter-spacing:1px;
+  animation:drop-in .5s cubic-bezier(.2,1.6,.4,1) both;
+}
+.logo .x{color:var(--red);}
+@keyframes drop-in{from{transform:translateY(-30px) scale(1.15);opacity:0;}to{transform:none;opacity:1;}}
+.tagline{margin-top:18px;font-size:1.08rem;font-weight:700;max-width:640px;}
+.sub{margin-top:10px;color:var(--dim);max-width:640px;font-size:.95rem;}
+.sub em{color:var(--cyan);font-style:normal;}
+.meta{margin-top:18px;display:flex;flex-wrap:wrap;gap:8px;}
+.chip{background:var(--bg-card);border:2px solid var(--border);padding:3px 11px;font-size:.74rem;color:var(--dim);}
+.chip b{color:var(--ink);font-weight:700;}
+.back{display:inline-block;margin-top:22px;font-family:'Press Start 2P',monospace;font-size:.6rem;color:var(--dim);}
+.back:hover{color:var(--gold);}
+
+/* sticky nav */
+nav.toc{position:sticky;top:0;z-index:50;background:rgba(11,11,20,.92);backdrop-filter:blur(6px);border-bottom:2px solid var(--border);margin:30px 0 0;}
+nav.toc .inner{max-width:980px;margin:0 auto;padding:10px 22px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;}
+nav.toc .inner::-webkit-scrollbar{display:none;}
+nav.toc a{flex:0 0 auto;font-family:'Press Start 2P',monospace;font-size:.56rem;color:var(--dim);border:2px solid var(--border);padding:7px 10px;white-space:nowrap;background:var(--bg-card);}
+nav.toc a:hover,nav.toc a.on{color:var(--gold);border-color:var(--gold);}
+
+/* section */
+section{padding:44px 0 8px;}
+.sec{font-family:'Press Start 2P',monospace;font-size:.74rem;color:var(--cyan);margin:0 0 8px;display:flex;align-items:center;gap:12px;}
+.sec::after{content:'';flex:1;height:2px;background:linear-gradient(90deg,var(--border),transparent);}
+.sec .zh{font-family:'Noto Sans SC',sans-serif;font-weight:900;font-size:1.3rem;color:var(--ink);}
+.lead{color:var(--dim);margin:6px 0 22px;font-size:.96rem;}
+
+/* tldr cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;}
+.card{background:var(--bg-card);border:3px solid var(--border);box-shadow:5px 5px 0 #000;padding:16px 16px 18px;display:flex;flex-direction:column;gap:8px;transition:transform .08s,border-color .08s;}
+.card:hover{border-color:var(--gold);transform:translate(-2px,-2px);box-shadow:7px 7px 0 #000;}
+.card .n{font-family:'Press Start 2P',monospace;font-size:.7rem;color:var(--gold);}
+.card h3{font-size:1.02rem;font-weight:900;line-height:1.4;}
+.card p{color:var(--dim);font-size:.88rem;}
+.card p a{font-weight:700;}
+
+/* tables */
+.tablewrap{overflow-x:auto;border:3px solid var(--border);box-shadow:5px 5px 0 #000;margin-bottom:14px;-webkit-overflow-scrolling:touch;}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:.86rem;background:var(--bg-card);}
+th,td{padding:10px 13px;text-align:left;border-bottom:1px solid var(--border);vertical-align:top;}
+th{background:var(--bg-soft);color:var(--cyan);font-weight:900;font-size:.8rem;white-space:nowrap;position:sticky;top:0;}
+tbody tr:hover{background:var(--bg-soft);}
+td b{color:var(--gold);}
+.scrollhint{font-size:.74rem;color:var(--dim);margin:-6px 0 16px;}
+
+/* generic prose blocks */
+.block{background:var(--bg-card);border:3px solid var(--border);box-shadow:5px 5px 0 #000;padding:18px 20px;margin-bottom:14px;}
+.block h4{font-size:1rem;font-weight:900;color:var(--gold);margin-bottom:6px;}
+.block ul{margin:6px 0 0 18px;}
+.block li{margin:5px 0;color:var(--ink);font-size:.92rem;}
+.block li span{color:var(--dim);}
+.cred{font-family:'Press Start 2P',monospace;font-size:.5rem;padding:2px 6px;border:1px solid var(--border);margin-left:4px;vertical-align:middle;}
+.cred.hi{color:var(--green);border-color:var(--green);}
+.cred.mid{color:var(--gold);border-color:var(--gold);}
+
+/* VS boss battle */
+.vsbox{border:3px solid var(--red);background:linear-gradient(180deg,#1a0e16,#12121f);box-shadow:6px 6px 0 #000;padding:8px;margin:6px 0 16px;}
+.vsbox .head{font-family:'Press Start 2P',monospace;font-size:.62rem;color:var(--red);text-align:center;padding:8px;letter-spacing:1px;}
+.vsgrid{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;gap:8px;}
+.fighter{background:var(--bg);border:2px solid var(--border);padding:14px;}
+.fighter h5{font-weight:900;font-size:.98rem;margin-bottom:4px;}
+.fighter .stat{font-family:'Press Start 2P',monospace;font-size:1.1rem;margin:8px 0;}
+.fighter.win .stat{color:var(--green);}
+.fighter.lose .stat{color:var(--red);}
+.fighter p{font-size:.82rem;color:var(--dim);}
+.vsmid{display:flex;align-items:center;font-family:'Press Start 2P',monospace;color:var(--gold);font-size:1.1rem;}
+.verdict{background:var(--bg);border:2px solid var(--cyan);padding:12px 14px;margin-top:8px;font-size:.9rem;}
+.verdict b{color:var(--cyan);}
+@media(max-width:620px){.vsgrid{grid-template-columns:1fr;}.vsmid{justify-content:center;padding:4px;}}
+
+/* multilang tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;}
+.tabs button{font-family:'Press Start 2P',monospace;font-size:.58rem;color:var(--dim);background:var(--bg-card);border:2px solid var(--border);padding:8px 11px;cursor:pointer;transition:.08s;}
+.tabs button:hover{color:var(--ink);}
+.tabs button.on{color:var(--gold);border-color:var(--gold);transform:translateY(-2px);}
+.pane{display:none;}
+.pane.on{display:block;animation:fade .25s both;}
+@keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;}}
+
+details{background:var(--bg-card);border:3px solid var(--border);box-shadow:5px 5px 0 #000;padding:0 18px;margin-bottom:12px;}
+details summary{cursor:pointer;font-weight:900;padding:14px 0;color:var(--gold);font-size:.96rem;}
+details[open] summary{border-bottom:1px solid var(--border);margin-bottom:12px;}
+details .body{padding-bottom:16px;font-size:.88rem;}
+details .body a{display:inline-block;margin:2px 8px 2px 0;}
+
+footer{margin-top:60px;padding:32px 0 70px;border-top:2px solid var(--border);color:var(--dim);font-size:.88rem;}
+footer .press{font-family:'Press Start 2P',monospace;font-size:.55rem;color:var(--dim);animation:blink 1.4s steps(1) infinite;margin-top:14px;display:inline-block;}
+@keyframes blink{50%{opacity:0;}}
+
+.dmg{position:fixed;z-index:9500;font-family:'Press Start 2P',monospace;font-weight:700;pointer-events:none;animation:dmg-pop .7s cubic-bezier(.2,1.4,.5,1) forwards;}
+@keyframes dmg-pop{0%{transform:translate(-50%,-50%) scale(.4);opacity:1;}25%{transform:translate(-50%,calc(-50% - 26px)) scale(1.2);opacity:1;}100%{transform:translate(-50%,calc(-50% - 60px)) scale(1);opacity:0;}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <span class="kicker">DEEP RESEARCH · 深度研究</span>
+    <h1 class="logo">技术选型 <span class="x">×</span> 人机配合</h1>
+    <p class="tagline">计划阶段，怎么按「人群 / 需求 / 项目」选开发语言，以及人和 AI 怎么分工。</p>
+    <p class="sub">一份多语言深度研究：先建<em>通用选型方法论 + 三张决策矩阵</em>，再落到 <em>indie / 游戏×AI / 视频自动化</em> 场景，最后讲<em>人机配合</em>的工作流与实证。</p>
+    <div class="meta">
+      <span class="chip">检索语言 <b>中 英 日 韩 德 法 西 葡 俄</b></span>
+      <span class="chip">日期 <b>2026-06</b></span>
+      <span class="chip">产出 <b>人 + AI 协作</b></span>
+    </div>
+    <a class="back" href="../index.html">◂ BACK TO bitqs</a>
+  </header>
+</div>
+
+<nav class="toc"><div class="inner">
+  <a href="#tldr">速览</a>
+  <a href="#method">方法论</a>
+  <a href="#matrix">决策矩阵</a>
+  <a href="#scene">场景落地</a>
+  <a href="#human">人机配合</a>
+  <a href="#multi">多语言</a>
+  <a href="#src">来源</a>
+</div></nav>
+
+<div class="wrap">
+
+  <!-- TLDR -->
+  <section id="tldr">
+    <h2 class="sec">TL;DR <span class="zh">一页速览</span></h2>
+    <p class="lead">没有"最好的语言"，只有"对这个人群 + 这个需求 + 这个项目最合适的语言"。</p>
+    <div class="grid">
+      <div class="card"><span class="n">01</span><h3>当成正式决策来做</h3><p>定维度 → 加权打分（5–8 个判据）→ 跑原型验证 → 用 <b>ADR</b> 把"为什么选它、放弃了什么"写进代码仓库。</p></div>
+      <div class="card"><span class="n">02</span><h3>默认"选无聊技术"</h3><p>每个团队的"创新代币"约只有 3 个，花在真正的业务创新上。警惕"简历驱动开发"反模式。</p></div>
+      <div class="card"><span class="n">03</span><h3>平台约束常直接锁死</h3><p>目标在浏览器、要零安装 → 几乎只能 <b>JS/TS</b>（WebAssembly 作补充）。</p></div>
+      <div class="card"><span class="n">04</span><h3>团队 + 招聘是硬约束</h3><p>Python/JS/Java 人才池最深；Rust 连年"最受推崇"（约 72–83%）但使用率仅约 12.6%，要算上学习曲线与招聘成本。</p></div>
+      <div class="card"><span class="n">05</span><h3>人机分工的黄金线</h3><p><b>技术选型与架构权衡是人类的活</b>；AI 适合起草规格、拆任务、扩展候选方案、做一致性检查。</p></div>
+      <div class="card"><span class="n">06</span><h3>别被提效数字带偏</h3><p>DORA 2025 定性最准：<b>"AI 是放大器，不会修复团队，只会放大已有的好坏。"</b></p></div>
+    </div>
+  </section>
+
+  <!-- METHOD -->
+  <section id="method">
+    <h2 class="sec">METHOD <span class="zh">通用选型方法论</span></h2>
+    <p class="lead">第一步不是比语言，而是拆需求；然后用可量化的框架把决策做出来、记下来。</p>
+    <div class="block">
+      <h4>六个核心评估维度</h4>
+      <ul>
+        <li>项目目标 / 需求匹配度 <span>— 区分功能性需求与非功能性需求</span></li>
+        <li>团队现有技能与上手成本 <span>— 学习曲线</span></li>
+        <li>性能与可扩展性 <span>— 以未来 3–5 年业务量为基准，而非当前量</span></li>
+        <li>可维护性与长期生命力 <span>— 社区活跃度、问题解决速度、业界案例</span></li>
+        <li>安全与合规</li>
+        <li>总体拥有成本 TCO <span>— 开发 + 维护 + 招聘成本</span></li>
+      </ul>
+    </div>
+    <div class="grid">
+      <div class="card"><h3>加权评分矩阵 <span class="cred hi">高</span></h3><p>判据设权重 → 候选方案打分 → 算 Σ(权重×分数)。判据控制在 <b>5–8 个</b>（超过 10 个会稀释信号）。日常最常用。</p></div>
+      <div class="card"><h3>AHP 层次分析法 <span class="cred hi">高</span></h3><p>两两成对比较把主观因素定量化，输出优先级。判据多、利益相关方多、要正式论证时用。</p></div>
+      <div class="card"><h3>ADR 架构决策记录 <span class="cred hi">高</span></h3><p>用轻量 Markdown 记 Status/Context/Decision/Consequences/Alternatives/Trade-offs，<b>与代码同仓库</b>。</p></div>
+    </div>
+    <div class="block">
+      <h4>反模式：什么时候"不要"选某语言</h4>
+      <ul>
+        <li><b>选无聊技术（Dan McKinley, 2015）</b>：别用新潮但未经验证的技术替换成熟件——新技术"未知的未知"更多。</li>
+        <li><b>简历驱动开发</b>：为简历引入时髦栈，作者走后留下无法维护的系统。</li>
+        <li><b>招聘单点故障</b>：Go 岗位约为 Rust 的 3–4 倍；没有"Rust 形状的问题"别默认重写。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MATRIX -->
+  <section id="matrix">
+    <h2 class="sec">MATRIX <span class="zh">三张决策矩阵</span></h2>
+    <p class="lead">核心交付物。下表可左右滑动查看完整内容。</p>
+
+    <h3 style="font-weight:900;margin:8px 0 10px;color:var(--cyan);">A · 按「项目类型」→ 推荐栈</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>项目类型</th><th>首选</th><th>何时换</th><th>关键依据</th></tr></thead>
+      <tbody>
+        <tr><td>Web 前端</td><td><b>TypeScript + React</b>（配 Next.js）或 Vue</td><td>极致体积→Svelte；强约定大企业→Angular</td><td>React 使用率约 44.7% 居首；TS 已成事实标准</td></tr>
+        <tr><td>Web 后端</td><td><b>Node.js(TS)</b> 全栈 / <b>Python</b> 快开发</td><td>高并发云原生→Go；大型企业→Java；极致性能→Rust</td><td>Node.js 使用率约 48.7%</td></tr>
+        <tr><td>移动端</td><td><b>Flutter</b>（约 46%）或 <b>React Native</b>（约 35%）</td><td>极致性能/深度系统集成→原生 Swift/Kotlin</td><td>Flutter UI 一致；RN 适合已有 JS 团队</td></tr>
+        <tr><td>浏览器 2D 游戏</td><td><b>Phaser 3/4（TypeScript）+ Vite</b></td><td>需原生级 3D→换引擎</td><td>免费开源、Canvas/WebGL、官方 TS+Vite 模板</td></tr>
+        <tr><td>移动/跨平台游戏</td><td><b>Unity（C#）</b></td><td>—</td><td>约 71% 头部移动游戏；Steam 上架数第一（51%）</td></tr>
+        <tr><td>免费许可 2D 独立游戏</td><td><b>Godot（GDScript/C#）</b></td><td>—</td><td>MIT 永久免费、专用 2D 渲染管线</td></tr>
+        <tr><td>高保真 3D / AAA</td><td><b>Unreal（C++/Blueprints）</b></td><td>—</td><td>Nanite+Lumen；按销量份额 31% 居首</td></tr>
+        <tr><td>数据科学 / ML / AI</td><td><b>Python</b>（pandas/scikit-learn + <b>PyTorch</b>）</td><td>统计→R；TPU 超大规模→JAX；边缘推理→C++</td><td>从业者 Python 接受度约 88%；PyTorch 占顶会论文约 80–85%</td></tr>
+        <tr><td>脚本 / 自动化</td><td><b>Python</b></td><td>系统胶水→Bash；Windows/Azure→PowerShell</td><td>超 60% IT 人首选 Python</td></tr>
+        <tr><td>系统级 / 高性能</td><td><b>Rust</b></td><td>高并发网络→Go；存量/HFT→C/C++</td><td>CISA 推荐迁移内存安全语言；Android 漏洞 76%→<20%</td></tr>
+        <tr><td>Serverless / 边缘</td><td><b>JS/TS</b>（Cloudflare Workers）</td><td>CPU 密集/复用 Rust 库→Rust+WASM</td><td>Workers 启动 &lt;1ms；免费档约 10 万请求/天</td></tr>
+      </tbody>
+    </table></div>
+    <p class="scrollhint">↔ 表格可横向滑动</p>
+
+    <h3 style="font-weight:900;margin:16px 0 10px;color:var(--cyan);">B · 按「人群 / 团队因素」→ 影响</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>因素</th><th>影响</th><th>数据</th></tr></thead>
+      <tbody>
+        <tr><td>团队现有技能</td><td>优先匹配现有专长；引入不熟语言拖慢生产力</td><td>行业共识</td></tr>
+        <tr><td>招聘 / 人才池</td><td>Python/JS/Java 最易招；Rust 稀缺要价高</td><td>约 42% 招聘方找 Python；Go 岗位约 Rust 的 3–4 倍</td></tr>
+        <tr><td>学习曲线</td><td>需快速带新人→Python；Rust 需 2–6 个月</td><td>Python 语法接近英语</td></tr>
+        <tr><td>开发者趋势</td><td>顺势招人/留人</td><td>增长最快：TypeScript、Rust、Python（JetBrains 2024）</td></tr>
+        <tr><td>全球 vs 中国</td><td>中国 Java 仍最常用</td><td>中国 Java 约 40%、Python 约 35%；全球 GitHub Python 登顶</td></tr>
+        <tr><td>受众/平台约束</td><td>浏览器零安装→锁定 JS/TS</td><td>JS 是唯一所有浏览器原生运行的语言，支撑约 98% 网站</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 style="font-weight:900;margin:16px 0 10px;color:var(--cyan);">C · 按「需求维度」→ 往哪权衡</h3>
+    <div class="tablewrap"><table>
+      <thead><tr><th>需求权重高</th><th>倾向选择</th><th>要付出的代价</th></tr></thead>
+      <tbody>
+        <tr><td>上市速度</td><td>Python / Node.js(TS) / Godot / "选无聊技术"</td><td>极致性能让步</td></tr>
+        <tr><td>运行时性能 / 低延迟</td><td>Rust / C++ / C（无 GC）</td><td>学习曲线、开发速度、招聘难度</td></tr>
+        <tr><td>跨平台覆盖</td><td>Flutter / Unity / Web 技术(TS)</td><td>单平台极致体验让步</td></tr>
+        <tr><td>可维护性 / 长期</td><td>静态类型（TS/Rust/Java）+ 成熟生态</td><td>前期工程化投入</td></tr>
+        <tr><td>内存安全 / 合规</td><td>Rust / Go（CISA 推荐）</td><td>重写成本、生态成熟度</td></tr>
+        <tr><td>招聘可得性</td><td>JavaScript / Python / Java</td><td>放弃小众语言的技术优势</td></tr>
+      </tbody>
+    </table></div>
+  </section>
+
+  <!-- SCENE -->
+  <section id="scene">
+    <h2 class="sec">SCENE <span class="zh">场景落地 · indie / 游戏×AI</span></h2>
+    <p class="lead">把通用框架落到独立开发者最常用的几条栈上，配真实案例。</p>
+    <div class="grid">
+      <div class="card"><h3>🕹️ 浏览器 2D 游戏</h3><p><b>Phaser 3/4 + TypeScript + Vite</b>。官方 <code>template-vite-ts</code> 模板，HMR 热重载。坑：内置匿名统计 <code>log.js</code>，用 <code>dev-nolog</code> 关。</p></div>
+      <div class="card"><h3>⚔️ 真实案例</h3><p>《吸血鬼幸存者》先用 <b>Phaser</b> 做，1.6 版后迁移到 <b>Unity</b>，桌面版用 <b>Electron</b> 打包。"Phaser 原型 → Unity/Electron"是被走通的演进路径。</p></div>
+      <div class="card"><h3>🎬 视频自动化</h3><p><b>Remotion</b>（用 React 以代码生成视频）。坑：<b>非纯 MIT 免费</b>，部分商用需买公司授权——计划阶段就要算进 TCO。</p></div>
+      <div class="card"><h3>☁️ 部署</h3><p><b>Cloudflare Pages/Workers</b>。免费档约 10 万请求/天，可组合 D1/R2/KV，对 indie 全栈友好。</p></div>
+      <div class="card"><h3>🐍 自动化胶水</h3><p><b>Python</b> 串联抓取→清洗→LLM 生成→发布。高性能 CLI 才考虑 Rust（否则 Go/Node 更快出活）。</p></div>
+      <div class="card"><h3>💡 indie 最贵的一课</h3><p><b>尽快发布优先于完美技术栈</b>——很多独立开发者死于"完美主义无法发布"。</p></div>
+    </div>
+  </section>
+
+  <!-- HUMAN -->
+  <section id="human">
+    <h2 class="sec">CO-OP <span class="zh">人机配合</span></h2>
+    <p class="lead">谁负责什么？选型与规划阶段，分工原则跨越所有语种高度一致。</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>任务</th><th>主导</th><th>说明</th></tr></thead>
+      <tbody>
+        <tr><td>业务逻辑 / 领域规则</td><td><b>人类</b></td><td>AI 缺领域上下文</td></tr>
+        <tr><td>技术选型与架构权衡</td><td><b>人类</b></td><td>AI 是"扩展选项的初级架构师"，但评估必须人来做</td></tr>
+        <tr><td>复杂数据库设计</td><td><b>人类</b></td><td>高影响、难回滚</td></tr>
+        <tr><td>不可逆/高影响决策审批</td><td><b>人类（门禁）</b></td><td>HITL</td></tr>
+        <tr><td>起草规格 / 需求文档</td><td>AI 起草 + 人审</td><td>—</td></tr>
+        <tr><td>拆任务 / 一致性检查清单</td><td><b>AI</b></td><td>—</td></tr>
+        <tr><td>扩展候选方案</td><td><b>AI</b></td><td>rubber duck / junior architect</td></tr>
+        <tr><td>按已评审原子任务编码</td><td><b>AI</b>（人抽查）</td><td>—</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 style="font-weight:900;margin:18px 0 6px;color:var(--cyan);">⚠️ 别被 AI 提效数字带偏</h3>
+    <p class="lead">同样严谨的随机对照试验（RCT），结论可以完全相反——因为场景不同。</p>
+    <div class="vsbox">
+      <div class="head">★ BOSS BATTLE · RCT 对决 ★</div>
+      <div class="vsgrid">
+        <div class="fighter lose">
+          <h5>METR 2025</h5>
+          <div class="stat">−19%</div>
+          <p>资深开源开发者，在<b>自己极熟的成熟大仓</b>做真实任务，反而慢了 19%。事前还预期提速 24%。</p>
+        </div>
+        <div class="vsmid">VS</div>
+        <div class="fighter win">
+          <h5>GitHub Copilot RCT</h5>
+          <div class="stat">+55.8%</div>
+          <p>95 名程序员做<b>孤立绿地小任务</b>（写个 HTTP server），含较多新手，完成快 55.8%。</p>
+        </div>
+      </div>
+      <div class="verdict">
+        <b>判定：场景决定结论，两者不可直接比较。</b> DORA 2025 的定性最实用——「AI 是放大器，不会修复团队，只会放大已有的好坏」。对独立开发者：AI 在<b>绿地原型 / 陌生探索 / 起草规格</b>上收益最大（正是 indie 主场）；在你已极熟的代码里精改时，把 AI 用在"评审/查错/写测试"比"代写"更划算。
+      </div>
+    </div>
+
+    <div class="block">
+      <h4>规格驱动开发（SDD）把分工固化进流程</h4>
+      <ul>
+        <li><b>GitHub Spec Kit</b> 五阶段：constitution → specify（只写 what/why）→ <b>plan（这一步才由人类填技术栈）</b> → tasks → implement。</li>
+        <li><b>Amazon Kiro</b> 产出三件套 requirements/design/tasks，用 EARS 语法写验收标准。</li>
+        <li><b>人类门禁 HITL</b>：金融交易、数据删除、生产变更、部署等不可逆操作应强制人类审批。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MULTI -->
+  <section id="multi">
+    <h2 class="sec">i18n <span class="zh">多语言视角</span></h2>
+    <p class="lead">用 7 个语种到母语社区检索，挖中英文圈缺失的视角。点下面的按钮切换。</p>
+    <div class="tabs">
+      <button class="on" data-t="pat">跨语言共同模式</button>
+      <button data-t="jp">🇯🇵 日</button>
+      <button data-t="kr">🇰🇷 韩</button>
+      <button data-t="de">🇩🇪 德</button>
+      <button data-t="fr">🇫🇷 法西葡</button>
+      <button data-t="ru">🇷🇺 俄</button>
+    </div>
+
+    <div class="pane on" data-p="pat">
+      <div class="grid">
+        <div class="card"><h3>① 数字主权 / 本地合规</h3><p>非英语世界独有的硬选型维度。德国 Bitkom：<b>68%</b> 认为过度依赖美中 AI；法国把 RGPD 合规当 AI 视频工具的选型标准。</p></div>
+        <div class="card"><h3>② Godot 崛起全球同步</h3><p>各语种用不同硬数据佐证：德（Steam 47→1500+ 款）、葡/俄（磁盘 164MB vs 20GB、编译快 31 倍）、日（上位替代论）。</p></div>
+        <div class="card"><h3>③ 母语文档量是头号变量</h3><p>韩：韩文文档量第一标准；葡：巴西葡语合成语音；日：VOICEVOX 日语视频栈。本地化常压过纯技术优劣。</p></div>
+        <div class="card"><h3>④ SDD 分工趋同、口号各异</h3><p>日"AI 写、人决定"、西"仅 0–20% 可委托 AI"、俄"开发者变设计工程师"、韩"规格能力"。<b>同一结论：选型与写规格是人类的活。</b></p></div>
+        <div class="card"><h3>⑤ 工具分工被独立发现</h3><p>日、韩两个互不相通的社区都得出「<b>Claude Code + Cursor</b> 按阶段/前后端分工」——说明这条实践很稳健。</p></div>
+        <div class="card"><h3>⑥ 招聘市场决定选型</h3><p>韩语最直白：用 Java/Spring 的几乎都是大公司、初创用 Node/Next——<b>选型本质是"想进哪类公司"</b>。</p></div>
+      </div>
+    </div>
+
+    <div class="pane" data-p="jp">
+      <div class="block"><ul>
+        <li><b>"Godot 上位替代论"</b><span class="cred hi">高</span> — 初学者与 2D 项目首推 Godot 而非 Unity，与英文圈"Unity 默认起步"不同。</li>
+        <li><b>"ツクール vs Phaser"</b><span class="cred mid">中</span> — 同人游戏特有的选型轴：无代码全套现成 vs 轻量但要自己补。</li>
+        <li><b>日本国产 SDD 工具 cc-sdd</b><span class="cred hi">高</span> — 一条命令把 Claude Code/Cursor 等"Kiro 化"、原生日语支持。</li>
+        <li><b>对 SDD 的认知论再诠释</b><span class="cred hi">高</span> — "本质是逼工程师自己把需求言语化，提升规格分辨率是人类的工作"。</li>
+        <li><b>Findy 调查</b><span class="cred mid">中</span> — 自由职业工程师生成 AI 活用率 84.2%，54% 付费；Claude Code 已逼近 Copilot。</li>
+      </ul></div>
+    </div>
+
+    <div class="pane" data-p="kr">
+      <div class="block"><ul>
+        <li><b>"别把 Next.js 当初始栈"逆流共识</b><span class="cred hi">高</span> — 推荐 Vite+React+TS+react-router，与"创业默认 Next.js"对照鲜明。</li>
+        <li><b>"先让 Opus 写 PRD/TRD"</b><span class="cred mid">中</span> — "学会 PRD、TRD 这两个词，完成度提升几倍"；并提出 RDD（Readme 驱动开发）。</li>
+        <li><b>大厂 AI 分岗落地</b><span class="cred mid">中</span> — Naver 做代码评审、Toss 做图像、Kakao 做垃圾分类；但"架构与支付稳定性判断仍是工程师职责"。</li>
+        <li><b>韩文文档量是引擎选型第一标准</b><span class="cred mid">中</span> — Unity、Phaser 都因此被选。</li>
+        <li><b>数据点</b><span class="cred mid">中</span> — 某调查 72% 开发者不用 vibe coding；Go 开发者 53% 指最大问题是 AI 生成"无法运行的代码"。</li>
+      </ul></div>
+    </div>
+
+    <div class="pane" data-p="de">
+      <div class="block"><ul>
+        <li><b>codecentric"AI 辅助开发五个等级"</b><span class="cred mid">中</span> — 等级间不是优劣排序；提出"AI Readiness"作为采用前提。</li>
+        <li><b>Fraunhofer IESE 引 DORA</b><span class="cred mid">中</span> — 30% 几乎不信任 AI 代码、61% 完全回避自主 Agent；"AI 是放大器，但前提是组织已做好准备"。</li>
+        <li><b>NIST 已将 Rust 列入"安全编程语言"</b><span class="cred hi">高</span> — Android 内存安全漏洞 2019→2022 从 76% 降到 35%。</li>
+        <li><b>ADR 史料精确化</b><span class="cred hi">高</span> — Nygard 2007《Release It!》提出、2011 博文广传；价值在 onboarding 与多年后回溯时显现。</li>
+      </ul></div>
+    </div>
+
+    <div class="pane" data-p="fr">
+      <div class="block"><ul>
+        <li><b>【法】数字主权 + RGPD 作为选型标准</b><span class="cred mid">中</span> — 并用 Y-Statement 显式记录"接受的折中"教学架构权衡。</li>
+        <li><b>【西】成体系的 SDD 人机分工话语</b><span class="cred hi">高</span> — 人定栈/约束、AI 生成技术计划、架构师验证；Plan 阶段最常被跳过但最能防技术债。</li>
+        <li><b>【法】一手证言</b><span class="cred mid">中</span> — 法国工作室转 Godot 后"并不后悔，回 Unity 纯粹是讨厌"，看重"做的东西都归我们所有"。</li>
+        <li><b>【法】JetBrains 2025</b><span class="cred hi">高</span> — 69% 开发者已用过 ChatGPT，近半数定期用于写代码。</li>
+      </ul></div>
+    </div>
+
+    <div class="pane" data-p="ru">
+      <div class="block"><ul>
+        <li><b>成本/负载驱动重写</b><span class="cred mid">中</span> — Java 单体迁 Rust/Go/C++，触发点是 100k+ RPS、云成本"相当于几个中级开发者工资"。</li>
+        <li><b>"全球排名 ≠ 本地市场"</b><span class="cred mid">中</span> — Go 在 TIOBE 跌出前十但俄罗斯大厂持续升温；Avito 官方发文劝业界别据排名调栈。</li>
+        <li><b>X5 Tech 的六阶段 SDD</b><span class="cred mid">中</span> — 多了独立的 Clarify 阶段；开发者角色重定义为"设计工程师"。</li>
+        <li><b>金融科技分层选型</b><span class="cred mid">中</span> — 近端 Scala+Akka、深层 Kotlin+Spring；点名 Scala"可读性差、编译慢对大项目致命"。</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- SOURCES -->
+  <section id="src">
+    <h2 class="sec">SOURCES <span class="zh">来源 & 全文</span></h2>
+    <p class="lead">全部结论带可信度分级与一手出处。完整报告（含全部引用链接）见仓库 README。</p>
+    <details>
+      <summary>关于可信度的诚实交代 ▾</summary>
+      <div class="body">
+        <p>检索环境对多数第三方站点的全文抓取返回 403，仅少数 GitHub/官方页完成逐字深读；其余结论基于搜索摘要 + 多源交叉印证，每条都标了 <span class="cred hi">高</span> / <span class="cred mid">中</span>。<b>凡涉及精确百分比的"中"可信度数字（各引擎份额、招聘比例、Findy 84.2% 等），正式引用前建议回一手报告再核一次。</b></p>
+      </div>
+    </details>
+    <details>
+      <summary>权威调查与一手来源（节选）▾</summary>
+      <div class="body">
+        <a href="https://survey.stackoverflow.co/2024/technology" target="_blank" rel="noopener">Stack Overflow 2024</a>
+        <a href="https://www.jetbrains.com/lp/devecosystem-2024/" target="_blank" rel="noopener">JetBrains 2024</a>
+        <a href="https://github.blog/news-insights/octoverse/octoverse-2024/" target="_blank" rel="noopener">GitHub Octoverse 2024</a>
+        <a href="https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report" target="_blank" rel="noopener">DORA 2025</a>
+        <a href="https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/" target="_blank" rel="noopener">METR 研究</a>
+        <a href="https://arxiv.org/abs/2302.06590" target="_blank" rel="noopener">Copilot RCT</a>
+        <a href="https://mcfunley.com/choose-boring-technology" target="_blank" rel="noopener">Choose Boring Technology</a>
+        <a href="https://www.thoughtworks.com/radar/techniques/lightweight-architecture-decision-records" target="_blank" rel="noopener">ThoughtWorks ADR</a>
+        <a href="https://raw.githubusercontent.com/github/spec-kit/main/README.md" target="_blank" rel="noopener">GitHub Spec Kit</a>
+        <a href="https://github.com/phaserjs/template-vite-ts" target="_blank" rel="noopener">Phaser TS+Vite 模板</a>
+        <a href="https://github.com/remotion-dev/remotion" target="_blank" rel="noopener">Remotion</a>
+        <a href="https://www.cisa.gov/news-events/news/urgent-need-memory-safety-software-products" target="_blank" rel="noopener">CISA 内存安全</a>
+      </div>
+    </details>
+    <p style="margin-top:12px;font-size:.9rem;">📄 完整报告（三层框架 + 多语言补充 + 全部来源）：<a href="./README.md">README.md</a></p>
+  </section>
+
+  <footer>
+    <p>🧰 本研究本身就是「人机配合」的产物：AI 多语言并行检索 + 对抗式核查，人类定方向与审阅。</p>
+    <p style="margin-top:6px;">© bitqs · 游戏 × AI · <a href="https://github.com/bitqs" target="_blank" rel="noopener">GitHub</a></p>
+    <span class="press">PRESS START</span>
+  </footer>
+</div>
+
+<script>
+// 语言 tab 切换
+document.querySelectorAll('.tabs button').forEach(b=>{
+  b.addEventListener('click',()=>{
+    document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.pane').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.querySelector('.pane[data-p="'+b.dataset.t+'"]').classList.add('on');
+  });
+});
+
+// 顶部导航高亮（scroll-spy）
+const links=[...document.querySelectorAll('nav.toc a')];
+const secs=links.map(a=>document.querySelector(a.getAttribute('href')));
+addEventListener('scroll',()=>{
+  let i=secs.length-1;
+  while(i>0 && secs[i].getBoundingClientRect().top>120) i--;
+  links.forEach(a=>a.classList.remove('on'));
+  if(links[i]) links[i].classList.add('on');
+},{passive:true});
+
+// 签名彩蛋：点击弹伤害数字（本站即 demo，沿用主页手感）
+const COLORS=['#ffc83d','#ff4757','#3de8ff','#fff'];
+addEventListener('pointerdown',e=>{
+  if(e.target.closest('a,button,summary,input,textarea')) return; // 不打扰交互元素
+  if(window.getSelection && String(window.getSelection())) return; // 选中文字时不弹
+  const d=document.createElement('div');
+  d.className='dmg';
+  const crit=Math.random()<0.15;
+  d.textContent=crit?'CRIT! '+(Math.floor(Math.random()*900)+100):Math.floor(Math.random()*99)+1;
+  d.style.left=(e.clientX+(Math.random()*20-10))+'px';
+  d.style.top=(e.clientY+(Math.random()*10-5))+'px';
+  d.style.fontSize=crit?'1.2rem':'.8rem';
+  d.style.color=crit?'#ffc83d':COLORS[Math.floor(Math.random()*COLORS.length)];
+  document.body.appendChild(d);
+  setTimeout(()=>d.remove(),700);
+});
+</script>
+</body>
+</html>
