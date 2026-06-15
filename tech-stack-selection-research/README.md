@@ -2,7 +2,7 @@
 
 > **一份深度研究报告** — 在软件项目的「计划阶段」，如何根据不同的**人群 / 需求 / 项目类型**选择开发语言，以及在这个决策过程中**人与 AI 如何分工配合**。
 >
-> 研究日期：2026-06 · 检索语言：中文 + 英文（多语言）· 作者：bitqs（人 + AI 协作产出）
+> 研究日期：2026-06 · 检索语言：中文 + 英文 + 日 / 韩 / 德 / 法 / 西 / 葡 / 俄（详见[多语言视角补充](#多语言视角补充日--韩--德--法西葡--俄)）· 作者：bitqs（人 + AI 协作产出）
 
 ---
 
@@ -15,7 +15,8 @@
 5. [第二层：indie / 游戏×AI / 创意工具 / 视频自动化 场景落地](#第二层indie--游戏ai--创意工具--视频自动化-场景落地)
 6. [第三层：人机配合 — 选型与规划阶段的协作工作流](#第三层人机配合--选型与规划阶段的协作工作流)
 7. [落到 bitqs 自己的栈：一份具体建议](#落到-bitqs-自己的栈一份具体建议)
-8. [附录：全部来源清单](#附录全部来源清单)
+8. [多语言视角补充（日 / 韩 / 德 / 法西葡 / 俄）](#多语言视角补充日--韩--德--法西葡--俄)
+9. [附录：全部来源清单](#附录全部来源清单)
 
 ---
 
@@ -39,7 +40,7 @@
 
 ## 研究方法与可信度说明
 
-- **检索方式**：围绕 5 个角度（通用方法论 / 按项目类型 / 按人群与团队 / indie 与创意场景 / 人机配合）做多语言（中 + 英）并行检索，覆盖一手与权威来源。
+- **检索方式**：第一版围绕 5 个角度（通用方法论 / 按项目类型 / 按人群与团队 / indie 与创意场景 / 人机配合）做中 + 英并行检索；第二版再用**日、韩、德、法、西、葡、俄** 7 个语种到各自母语社区检索，专挖中英文圈缺失的视角（见[多语言视角补充](#多语言视角补充日--韩--德--法西葡--俄)）。
 - **可信度分级**：每条结论标注 **高 / 中 / 低**。
   - **高** = 一手来源（官方文档、GitHub 仓库、政府机构、严谨 RCT 论文）或多源交叉印证。
   - **中** = 二手统计、行业博客、趋势性判断、单一来源的具体数字。
@@ -291,6 +292,64 @@
 
 ---
 
+## 多语言视角补充（日 / 韩 / 德 / 法西葡 / 俄）
+
+> 第一版报告以中文 + 英文来源为主。本节专门用**日语、韩语、德语、法语/西语/葡语、俄语**到各自母语社区检索，挖出中英文圈里**没有或很少出现**的视角与一手资料。下面先提炼跨语言的共同模式，再分语种列特色发现。
+
+### 跨语言的 6 个共同模式
+
+1. **"数字主权 / 本地合规"是非英语世界独有的硬选型维度。** 德国 Bitkom 2025 调查：**68%** 受访者认为德国在 AI 上过度依赖美中、**60%** 希望摆脱对美国 AI 公司的依赖；法国把 **RGPD 合规 + 数字主权**直接当作 AI 视频工具的选型标准（如本土方案 Pitchy/Recii）；俄语圈则因外部环境出现整体"去 Java/去美系栈"与"本地市场 ≠ 全球排名"的论述。英文报告里几乎看不到这一维度。([Bitkom](https://www.bitkom.org/Presse/Presseinformation/Durchbruch-Kuenstliche-Intelligenz) · [Bpifrance](https://bigmedia.bpifrance.fr/nos-dossiers/comment-utiliser-les-generateurs-de-video-par-ia-en-entreprise))
+
+2. **Godot 崛起是全球现象，但每个语种用不同硬数据佐证。** 德语：基于 Godot 的 Steam 游戏从 2020 年 47 款增至 2025 年 1500+ 款；葡语/俄语圈广传同一组基准——Godot 比 Unity 加载快 5 倍、导出快 20 倍、脚本编译快 31 倍，磁盘占用 **164MB vs 20GB**；日语圈直接提出"Godot 上位替代论"；韩语圈用"Steam 转向 + 2D 类型市场被验证"解释其走红。多语种交叉印证让"Godot 上升"这条结论可信度显著提高。([heise/nobreakpoints](https://blog.nobreakpoints.com/unity-vs-godot-engine/) · [Habr](https://habr.com/ru/news/1039340/))
+
+3. **"母语文档量 / 本地化"是务实选型的头号变量。** 韩语圈把"韩文文档多不多"当作引擎选型第一标准（Unity、Phaser 都因此被选）；葡语/巴西圈把"是否支持巴西葡语合成语音"当作视频工具的关键标准；日语圈做自动视频的事实栈是 **Python + VOICEVOX（日语语音）+ MoviePy**。母语世界的选型，本地化往往压过纯技术优劣。([devkuma](https://www.devkuma.com/docs/game/game-engine/) · [Alura](https://www.alura.com.br/artigos/ia-para-criar-videos))
+
+4. **规格驱动开发（SDD）的人机分工，各语种独立得出高度一致的结论，但口号各异。** 日："AI 是『写的人』，人类是『决定的人』"；西语："只有 0–20% 的任务可完全委托 AI"；俄语（X5 Tech）：开发者角色重定义为 **"设计工程师"**——核心技能是"把业务需求翻译成清晰契约"；德语（codecentric）：开发者应**"反思式（当陪练）"而非"委派式（外包）"**用 AI，且处于"驾驶座"；韩语（teo）：核心能力是**"规格能力"**——能精确下达"用 Express 写 POST /api/login，bcrypt 校验，签 JWT，失败返 401"这种指令。**五个语种、同一个结论：技术选型与规格制定是人类的活。**
+
+5. **"Claude Code + Cursor 按阶段/前后端分工"被日、韩两个语种独立总结出来。** 日语：前半用 Claude Code 接需求、搭骨架，后半转 Cursor 做细节与 UI；韩语：后端用 Claude Code（擅长复杂任务）、前端用 Cursor（UI 集成好），互补同用。两个互不相通的语言社区得出同样的工具分工法，说明这是一条相当稳健的实践。([Zenn](https://zenn.dev/revvi/articles/377cd151ba39c2) · [velog](https://velog.io/@takuya/실제-경험-Claude-Code와-Cursor-일주일-사용-후-알게-된-진짜-비용-효율))
+
+6. **"招聘市场决定选型"在东亚语种里被表达得最直白。** 韩语圈的二分法最典型：**用 Java/Spring 的几乎都是大公司，初创则多用 Node.js/Next.js——所以选型本质是"你想进哪类公司"**（Java 在 Jumpit 招聘栈中占 32–36% 居首）；日语圈讲"从招聘倒推技术选定"、要选"还算时髦"的技术以利招人；俄语 Habr Career 则给出按语言切分的本土薪资涨幅（2025 下半年 C +18%、C++ +14%、JS +11%）。([ZDNet Korea](https://zdnet.co.kr/view/?no=20230105082540) · [Habr 薪资](https://habr.com/ru/articles/981704/))
+
+### 🇯🇵 日语圈特色发现
+
+- **"Godot 上位替代论"**：初学者与 2D 项目首推 Godot 而非 Unity（安装约 25MB、启动约 5 秒、GDScript 适合边试错边做），与英文圈"Unity 默认起步"的惯性明显不同。可信度：高。([nishigames](https://nishigames.com/2025/11/22/game-engine/))
+- **"ツクール（RPG Maker）vs Phaser"** 这条同人游戏特有的选型轴：无代码全套现成 vs 轻量但要自己补很多。可信度：中。([note](https://note.com/takuya_hb1/n/na6a50b8dd3f9))
+- **日本国产 SDD 工具 cc-sdd**：一条命令 `npx cc-sdd@latest --lang ja` 把 Claude Code/Cursor/Gemini CLI 等"Kiro 化"、原生日语支持；"国产ツール"的身份认同是独有传播点。可信度：高。([Qiita](https://qiita.com/tomada/items/6a04114fc41d0b86ffee) · [GitHub](https://github.com/gotalab/cc-sdd/blob/main/docs/README/README_ja.md))
+- **对 SDD 的认知论再诠释**："SDD 工具的本质是逼工程师自己把需求言语化，提升规格分辨率（解像度）是人类的工作"。可信度：高。([Zenn](https://zenn.dev/gmomedia/articles/8ccf71e50858de))
+- **Findy 调查**：IT/Web 自由职业工程师生成 AI 活用率 **84.2%**，活用者中 **54%** 付费；2025 年 5 月发布的 Claude Code 利用率已逼近 Copilot。可信度：中（数字来自检索摘要，建议回原页核对）。([Findy](https://findy.co.jp/2820/))
+
+### 🇰🇷 韩语圈特色发现
+
+- **"别把 Next.js 当初始栈"的逆流共识**：无把握时选 Next.js 会"与它搏斗"，推荐 **Vite + React + TypeScript + react-router**，日后向 Next/Remix/Gatsby 迁移都有官方文档支持。与中英文圈"创业默认 Next.js"对照鲜明。可信度：高。([velog/woohm402](https://velog.io/@woohm402/dont-use-nextjs-to-initialize-project))
+- **"先让 Opus 写 PRD/TRD"**：vibe coding 实操圈的关键动作——"仅仅学会 PRD、TRD 这两个词，项目完成度就提升几倍"；并提出 **RDD（Readme-Driven Development）**，先备好 PRD.md/UserFlow.md 再开工。可信度：中。([Threads](https://www.threads.com/@sihyun_adventure/post/DL47sadyNtG/) · [velog/prayme](https://velog.io/@prayme/바이브-코딩-후기))
+- **大厂 AI 分岗落地**：Naver 用 AI 做代码评审、Toss 做图像、Kakao 做垃圾内容分类；TossPayments 建 MCP 服务器用自然语言自动化 PG 接入，但明确"架构设计与支付稳定性判断仍是工程师的职责"。可信度：中。([dalpha](https://app.dalpha.so/blog/ai-usecase-tech/))
+- **数据点**：某调查 **72% 开发者不用 vibe coding**、仅 11.9% 在用；Go 开发者调查 53% 指最大问题是 AI 生成"无法运行的代码"。可信度：中。([ITWorld KR](https://www.itworld.co.kr/article/4121785/))
+
+### 🇩🇪 德语圈特色发现（偏工程治理）
+
+- **codecentric"AI 辅助开发的五个等级"**：明确指出等级间**不是优劣排序**（依语境/任务而定）；Level 5 = 无人工代码审查的自主产品开发（类比自动驾驶，目前尚未实现）。并提出 **"AI Readiness（AI 就绪度）"** 作为采用 AI 的先决条件。可信度：中。([codecentric](https://www.codecentric.de/wissens-hub/blog/die-fuenf-level-der-ki-gestuetzten-softwareentwicklung))
+- **Fraunhofer IESE 引 DORA**：**30%** 开发者对 AI 代码"几乎不信任"、**61%** 完全回避自主 AI Agent；核心论断"**AI 是放大器，但前提是组织已做好准备**，局部生产率提升不会自动转化为系统层面更好结果"。可信度：中。([Fraunhofer IESE](https://www.iese.fraunhofer.de/blog/ki-in-der-softwareentwicklung-neue-erkenntnisse-aus-forschung-und-praxis/))
+- **NIST 已将 Rust 列入"安全编程语言"清单**，Rust 基金会成立 Safety-Critical Rust Consortium；Android 内存安全漏洞占比 2019→2022 从 76% 降到 35%。可信度：高。([heise](https://www.heise.de/news/Android-Mehr-Rust-weniger-C-C-und-weniger-kritische-Schwachstellen-7364247.html))
+- **ADR 史料精确化**：Nygard 2007 年《Release It!》提出、2011 年博文广传；德语圈强调其价值在 onboarding 与"数月/数年后回溯"时才显现。可信度：高。([mayflower](https://blog.mayflower.de/15888-architekturentscheidung-adr.html))
+
+### 🇫🇷🇪🇸🇵🇹 法语 / 西语 / 葡语圈特色发现
+
+- **【法】数字主权 + RGPD 作为 AI 视频工具选型标准**；法语 ADR 圈用 **Y-Statement** 格式"强制显式标明所接受的折中"，当作教初级工程师做架构权衡的教学工具。可信度：中/高。([Code Heroes](https://www.codeheroes.fr/2023/05/31/clarifiez-les-decisions-techniques-avec-les-adrs/))
+- **【西】成体系的 SDD 人机分工话语**：人类提供技术栈/参考架构/设计约束，AI 生成完整技术计划（模块/API/数据模型/任务拆解），资深架构师验证可行性；并本地化引用 METR"无结构用 AI 慢 19%"。Carlos Azaustre 强调 **Plan 阶段最常被跳过但最能防技术债**。可信度：高。([aicode.academy](https://aicode.academy/blog/es/spec-driven-development/) · [Carlos Azaustre](https://carlosazaustre.es/blog/spec-driven-development-agentes-ia))
+- **【法】一手证言**：法国工作室开发《Aetheris》后"被迫转 Godot 并不后悔，回 Unity 纯粹是讨厌"，理由含"用 Godot 做的东西都归我们所有"对工作室长期存续重要。可信度：中。([activdesign](https://activdesign.eu/blog/retour-dexperience-godot-le-jeu-aetheris))
+- **【法】JetBrains 2025**：69% 开发者已用过 ChatGPT，近半数定期用于写代码。可信度：高。([BDM](https://www.blogdumoderateur.com/etude-langages-utilises-developpeurs-2025/))
+
+### 🇷🇺 俄语圈特色发现
+
+- **成本/负载驱动重写**：某后端团队把 Java(Spring Boot) 单体迁移到 Rust/Go/C++，触发点是 **100k+ RPS、单实例内存 16–32GB、云成本"相当于几个中级开发者工资"**；读者投票 Rust 40.31% / Go 30.69% / C++ 17.86%。可信度：中。([Habr](https://habr.com/ru/articles/953364/))
+- **"全球排名 ≠ 本地市场"**：Go 在 TIOBE 2026 年初从第 7 跌到第 16，但在俄罗斯大厂持续升温（Go 开发者 4 万+）；Avito 官方技术博客专门发文回应"Golang 完蛋了？"的标题党，劝业界别据此调栈。可信度：中。([Habr](https://habr.com/ru/articles/989014/) · [Avito](https://habr.com/ru/companies/avito/news/992314/))
+- **X5 Tech 的六阶段 SDD**：Constitution → Specify → **Clarify** → Plan → Tasks → Implement，强调 Clarify 作为独立必备阶段能"尽早暴露歧义、大幅减少返工"，并专门讨论棕地/遗留系统如何引入 SDD。可信度：中。([Habr/X5Tech](https://habr.com/ru/companies/X5Tech/articles/995466/) · [Habr](https://habr.com/ru/articles/982890/))
+- **金融科技分层选型**："近端后端"用 Scala + Akka + Cats Effect，"深层后端"用 Kotlin + Spring；明确点出 Scala 缺点"可读性比 Java 差、编译慢——对大项目是致命点"。可信度：中。([Skillbox](https://skillbox.ru/media/code/kak-ustroena-razrabotka-v-bolshom-fintekhe-pri-chyem-tut-scala-i-za-chto-ne-lyubyat-java/))
+
+> **一句话总结这一节**：技术选型从来不只是技术问题——**合规与主权、母语文档、招聘市场、云成本**这些"非技术约束"，在不同语言世界里常常才是真正的决定因素。而"人定方向/写规格、AI 做实现"这条人机分工原则，则是跨越所有语种的强共识。
+
+---
+
 ## 附录：全部来源清单
 
 ### A. 通用选型方法论
@@ -342,5 +401,21 @@
 - 中文：[Spec-Driven Development (知乎)](https://zhuanlan.zhihu.com/p/1993368909856912661) · [人机协作成为 AI 编程主流 (CSDN)](https://aicoding.csdn.net/68c98175a6dc56200e85848e.html) · [6 种 AI 协作方法 (知乎)](https://zhuanlan.zhihu.com/p/1956371601860847413)
 
 ---
+
+### F. 多语言来源（日 / 韩 / 德 / 法西葡 / 俄）
+
+**日语**：[个人开发引擎选型 (nishigames)](https://nishigames.com/2025/11/22/game-engine/) · [Phaser 决定 (note)](https://note.com/takuya_hb1/n/na6a50b8dd3f9) · [cc-sdd (Qiita)](https://qiita.com/tomada/items/6a04114fc41d0b86ffee) / [cc-sdd README (GitHub)](https://github.com/gotalab/cc-sdd/blob/main/docs/README/README_ja.md) · [SDD 三工具比较 (Zenn)](https://zenn.dev/gmomedia/articles/8ccf71e50858de) · [AI 驱动开发生命周期 (Serverworks)](https://www.serverworks.co.jp/blog/ai/ai_driven_development_lifecycle.html) · [工具使い分け (Zenn)](https://zenn.dev/revvi/articles/377cd151ba39c2) · [ADR 与 LLM (Qiita)](https://qiita.com/yonaka15/items/1a8e118d663ede340399) · [VOICEVOX+MoviePy 自动视频 (Qiita)](https://qiita.com/W_T2R/items/20a09106f64ab1c666a5) · [Findy 调查](https://findy.co.jp/2820/) · [日经 xTECH 语言调查 2025](https://xtech.nikkei.com/atcl/nxt/column/18/03407/)
+
+**韩语**：[别用 Next.js 作初始栈 (velog)](https://velog.io/@woohm402/dont-use-nextjs-to-initialize-project) · [游戏引擎 (devkuma)](https://www.devkuma.com/docs/game/game-engine/) · [Godot 人气 (BatStudio)](https://www.ibatstudio.com/고도-엔진의-인기-비결-유니티와-간단-비교/) · [Remotion (Dale Seo)](https://daleseo.com/remotion/) · [PRD/TRD 实操 (Threads)](https://www.threads.com/@sihyun_adventure/post/DL47sadyNtG/) · [vibe coding 后记/RDD (velog)](https://velog.io/@prayme/바이브-코딩-후기) · [大厂 AI 落地 (dalpha)](https://app.dalpha.so/blog/ai-usecase-tech/) · ["规格能力" (velog/teo)](https://velog.io/@teo/ai-and-developer) · [Kurly 可预测 vibe coding](https://helloworld.kurly.com/blog/vibe-coding-with-claude-code/) · [Java 占比 (ZDNet Korea)](https://zdnet.co.kr/view/?no=20230105082540)
+
+**德语**：[AI 辅助五个等级 (codecentric)](https://www.codecentric.de/wissens-hub/blog/die-fuenf-level-der-ki-gestuetzten-softwareentwicklung) · [AI 软件开发新认知 (Fraunhofer IESE)](https://www.iese.fraunhofer.de/blog/ki-in-der-softwareentwicklung-neue-erkenntnisse-aus-forschung-und-praxis/) · [Android Rust 漏洞下降 (heise)](https://www.heise.de/news/Android-Mehr-Rust-weniger-C-C-und-weniger-kritische-Schwachstellen-7364247.html) · [Rust 安全关键系统联盟 (heise)](https://www.heise.de/news/Rust-fuer-sicherheitskritische-Systeme-Konsortium-kuemmert-sich-um-den-Einsatz-9761117.html) · [ADR (mayflower)](https://blog.mayflower.de/15888-architekturentscheidung-adr.html) · [ADR (Production Ready)](https://www.production-ready.de/2023/12/28/lightweight-architecture-documentation-adr.html) · [Bitkom AI 突破调查](https://www.bitkom.org/Presse/Presseinformation/Durchbruch-Kuenstliche-Intelligenz) · [iX Workshop Copilot/Claude Code (heise)](https://www.heise.de/news/iX-Workshop-Produktiver-programmieren-mit-GitHub-Copilot-Claude-Code-Co-11109435.html)
+
+**法语**：[ADR (Code Heroes)](https://www.codeheroes.fr/2023/05/31/clarifiez-les-decisions-techniques-avec-les-adrs/) · [ADR (S. Decout)](https://medium.com/@sylvain.decout/architecture-et-documentation-les-adrs-cbaac61aad4e) · [Godot 体验 Aetheris (activdesign)](https://activdesign.eu/blog/retour-dexperience-godot-le-jeu-aetheris) · [企业 AI 视频生成 (Bpifrance)](https://bigmedia.bpifrance.fr/nos-dossiers/comment-utiliser-les-generateurs-de-video-par-ia-en-entreprise) · [JetBrains 开发者调查 2025 (BDM)](https://www.blogdumoderateur.com/etude-langages-utilises-developpeurs-2025/)
+
+**西语**：[SDD (aicode.academy)](https://aicode.academy/blog/es/spec-driven-development/) · [SDD 与 AI 代理 (Carlos Azaustre)](https://carlosazaustre.es/blog/spec-driven-development-agentes-ia) · [SDD/METR (Neuronic)](https://neuronic.com.ar/blog/spec-driven-development) · [Unity vs Godot (Codearte)](https://codearte.com.ar/blog/unity-vs-godot-cual-es-la-mejor-opcion-para-aprender-a-desarrollar-videojuegos)
+
+**葡语**：[Godot 将成巨头 (GameGuild)](https://blog.gameguild.gg/como-o-godot-vai-se-tornar-um-gigante/) · [Godot vs Unity 2026 (DEV)](https://dev.to/linou518/godot-vs-unity-in-2026-which-engine-should-indie-developers-choose-50g4) · [AI 做视频 2026 (Alura)](https://www.alura.com.br/artigos/ia-para-criar-videos)
+
+**俄语**：[高负载后端往哪重写 (Habr)](https://habr.com/ru/articles/953364/) · [Go 在 TIOBE 下跌 (Habr)](https://habr.com/ru/articles/989014/) · [Avito 回应 Golang 完蛋论](https://habr.com/ru/companies/avito/news/992314/) · [金融科技 Scala/Kotlin (Skillbox)](https://skillbox.ru/media/code/kak-ustroena-razrabotka-v-bolshom-fintekhe-pri-chyem-tut-scala-i-za-chto-ne-lyubyat-java/) · [2025 薪资调查 (Habr)](https://habr.com/ru/articles/981704/) · [vibe → SDD (Habr/X5Tech)](https://habr.com/ru/companies/X5Tech/articles/995466/) · [既有项目引入 SDD (Habr)](https://habr.com/ru/articles/982890/) · [Godot vs Unity 同游戏对比 (Habr)](https://habr.com/ru/news/1039340/)
 
 > **本报告本身就是"人机配合"的产物**：由 AI 多语言并行检索 + 对抗式核查、人类定方向与审阅。报告中所有"中"可信度的精确数字，建议在正式引用前回一手来源二次核对（详见[研究方法与可信度说明](#研究方法与可信度说明)）。
